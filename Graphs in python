@@ -1,0 +1,75 @@
+## Matplotlib plots
+
+import pandas as pd
+import matplotlib.pyplot as pl
+# Read data from the Excel file into separate DataFrames
+data1 = pd.read_excel('New analysis.xlsx', sheet_name='Qvst')
+# Extract columns for the scatter plots
+x1 = data1['X1']
+y1 = data1['Y1']
+x2 = data1['X2']
+y2 = data1['Y2']
+x3 = data1['X3']
+y3 = data1['Y3']
+x4 = data1['X4']
+y4 = data1['Y4']
+x5 = data1['X5']
+y5 = data1['Y5']
+# Set a logarithmic scale
+plt.xscale('log')
+# Create the scatter plot for Dataset 1
+plt.scatter(x1, y1, marker='o', color='r', label='Conc 1')
+plt.scatter(x2, y2, marker='o', color='g', label='Conc 2')
+plt.scatter(x3, y3, marker='o', color='b', label='Conc 4')
+plt.scatter(x4, y4, marker='x',color='r', label='Conc 5')
+plt.scatter(x5, y5, marker='x',color='g',label='Conc 6')
+# Customize the plot
+plt.xlabel('Q(mass flow rate)')
+plt.ylabel('Non-dimensional thickness')
+plt.title('Thickness vs mass flow rate')
+# Create separate legends for each dataset
+legend1 = plt.legend(loc='lower right') 
+legend2= plt.legend(loc='lower right') 
+legend3= plt.legend(loc='lower right') 
+legend4= plt.legend(loc='lower right') 
+legend5= plt.legend(loc='lower right')           
+# Add the legends to the plot
+plt.gca().add_artist(legend1)
+# Show the plot
+plt.grid(True)
+plt.show()
+
+##3D plots matplotlib
+
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure()
+ax = fig.add_subplot(111, projection = '3d')
+x = df['Re']
+y = df['We*Bo']
+z = df['Ca']
+ax.set_xlabel("Reynolds number")
+ax.set_ylabel("Weber*Bond number")
+ax.set_zlabel("t/R")
+ax.scatter(x, y, z)
+plt.show()
+
+##Seaborn plots
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set_theme(style="darkgrid")
+df = pd.read_excel('Regime transition.xlsx')
+sns.relplot(data=df, x="m_dot", y="ita", style ="Regime", hue="Surface tension")
+plt.xscale('log')
+
+##seperate plots seaborn
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set_theme(style="darkgrid")
+df = pd.read_excel('Regime transition.xlsx')
+grid = sns.FacetGrid(df, col = "ita", hue = "Regime", col_wrap=3)
+grid.map(sns.scatterplot, "Re", "Ca")
+grid.add_legend()
+plt.show()
