@@ -1,3 +1,3 @@
 # Learning-python
 
-These are my notes for learning pyton, google colab and github!
+These are my notes for learning python, Jupyter notebook, google colab and github!
